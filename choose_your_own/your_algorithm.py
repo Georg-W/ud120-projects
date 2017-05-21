@@ -27,8 +27,18 @@ plt.ylabel("grade")
 plt.show()
 ################################################################################
 
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 
-### your code here!  name your classifier object clf if you want the 
+
+clf = RandomForestClassifier(n_estimators=10, criterion='gini', max_depth=None, min_samples_split=20, min_samples_leaf=2, min_weight_fraction_leaf=0.0, max_features= "sqrt", max_leaf_nodes=None, min_impurity_split=1e-07, bootstrap=True, oob_score=False, n_jobs=1, random_state=None, verbose=0, warm_start=True, class_weight=None)
+
+clf.fit(features_train, labels_train)
+
+pred = clf.predict(features_test)
+
+print accuracy_score(pred, labels_test)
+### your code here!  name your classifier object clf if you want the
 ### visualization code (prettyPicture) to show you the decision boundary
 
 
