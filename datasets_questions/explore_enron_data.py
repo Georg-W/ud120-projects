@@ -22,9 +22,15 @@ enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r")
 print(enron_data["SKILLING JEFFREY K"])
 
 counter = 0
+total_count = 0
 
 for val in enron_data:
-    if enron_data[val]["poi"]:
+    total_count += 1
+    if (enron_data[val]["poi"]):
         counter += 1
+        print
 
+print (counter/total_count)
 print counter
+print total_count
+
