@@ -36,9 +36,9 @@ def outlierCleaner(predictions, ages, net_worths):
     for error in newArr:
         print "error: ", error[2]
 
-    print "biggest: ", newArr[0:-8]
+    print "biggest: ", newArr[0:-10]
 
-    arr = newArr[0:-10]
+    arr = newArr[0:-9]
 
 
     cleaned_data = []
