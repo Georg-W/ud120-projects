@@ -23,8 +23,11 @@ from parse_out_email_text import parseOutText
 """
 
 
+
 from_sara  = open("from_sara.txt", "r")
 from_chris = open("from_chris.txt", "r")
+test = open("test_email.txt", "r")
+
 
 from_data = []
 word_data = []
@@ -42,23 +45,40 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
         ### only look at first 200 emails when developing
         ### once everything is working, remove this line to run over full dataset
         temp_counter += 1
+
         if temp_counter < 200:
             path = os.path.join('..', path[:-1])
             print path
             email = open(path, "r")
 
+            text = parseOutText(email)
+
+            newmail = str(text)
             ### use parseOutText to extract the text from the opened email
 
-            ### use str.replace() to remove any instances of the words
-            ### ["sara", "shackleton", "chris", "germani"]
+        ### use str.replace() to remove any instances of the words
+            print "mailbefore: ", newmail
 
-            ### append the text to word_data
 
+            for word in ["sara", "shackleton", "chris", "germani"]:
+                newmail = newmail.replace(word, "")
+
+            print "mailafter: ", newmail
+
+        ### append the text to word_data
+            word_data.append(newmail)
+
+            print "from: ", name
             ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
+            if name == "chris":
+                from_data.append(1)
+            else:
+                from_data.append(0)
+
+        email.close()
 
 
-            email.close()
-
+print "152: ", word_data[152]
 print "emails processed"
 from_sara.close()
 from_chris.close()
