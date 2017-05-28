@@ -46,9 +46,8 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
         ### once everything is working, remove this line to run over full dataset
         temp_counter += 1
 
-        if temp_counter < 200:
+        if temp_counter < 20000:
             path = os.path.join('..', path[:-1])
-            print path
             email = open(path, "r")
 
             text = parseOutText(email)
@@ -57,18 +56,15 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             ### use parseOutText to extract the text from the opened email
 
         ### use str.replace() to remove any instances of the words
-            print "mailbefore: ", newmail
 
 
             for word in ["sara", "shackleton", "chris", "germani"]:
                 newmail = newmail.replace(word, "")
 
-            print "mailafter: ", newmail
 
         ### append the text to word_data
             word_data.append(newmail)
 
-            print "from: ", name
             ### append a 0 to from_data if email is from Sara, and 1 if email is from Chris
             if name == "chris":
                 from_data.append(1)
@@ -78,7 +74,16 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
         email.close()
 
 
-print "152: ", word_data[152]
+
+from sklearn import feature_extraction
+
+ref = feature_extraction.text.TfidfVectorizer()
+ref.stop_words = "english"
+ref.fit(word_data)
+print "tf: ",len(ref.get_feature_names())
+feature_words = ref.get_feature_names()
+print "34597: ", feature_words[34597]
+
 print "emails processed"
 from_sara.close()
 from_chris.close()
