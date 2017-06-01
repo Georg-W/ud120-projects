@@ -35,8 +35,29 @@ features_test  = vectorizer.transform(features_test).toarray()
 features_train = features_train[:150].toarray()
 labels_train   = labels_train[:150]
 
+names = vectorizer.get_feature_names()
 
+from sklearn.tree import DecisionTreeClassifier
 
+clf = DecisionTreeClassifier();
+
+clf.fit(features_train, labels_train);
+pred = clf.predict(features_test, labels_test);
+print "score: ", clf.score(features_test, labels_test);
+
+counter = 0;
+
+for item in clf.feature_importances_:
+    if item > 0.2:
+        print "item: ", item
+        print "counter", counter
+    counter = counter+1
+
+countera = 0;
+for item in names:
+    if countera == 21323:
+        print "name: ", item
+    countera = countera+1
 ### your code goes here
 
 
