@@ -45,7 +45,12 @@ print "recall: ", recall_score(pred, y_test)
 
 print "precision: ", precision_score(pred, y_test)
 
+predictions = [0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1]
+true_labels = [0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0]
 
+print "recall: ", recall_score(predictions, true_labels)
+
+print "precision: ", precision_score(predictions, true_labels)
 
 print "new: ", y_test
 print clf.score(X_test, y_test)
