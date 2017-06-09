@@ -24,7 +24,31 @@ features_list = ["poi", "salary"]
 data = featureFormat(data_dict, features_list)
 labels, features = targetFeatureSplit(data)
 
+from sklearn import tree
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import recall_score, precision_score
 
+X_train, X_test, y_train, y_test = train_test_split(
+    features, labels, test_size=0.3, random_state=42)
+
+clf = tree.DecisionTreeClassifier()
+
+clf.fit(X_train, y_train)
+
+pred = clf.predict(X_test)
+
+print "pred: ", len(X_test)
+
+print "pred: ", pred
+
+print "recall: ", recall_score(pred, y_test)
+
+print "precision: ", precision_score(pred, y_test)
+
+
+
+print "new: ", y_test
+print clf.score(X_test, y_test)
 
 ### your code goes here 
 

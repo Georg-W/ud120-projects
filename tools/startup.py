@@ -35,7 +35,6 @@ url = "https://www.cs.cmu.edu/~./enron/enron_mail_20150507.tgz"
 urllib.urlretrieve(url, filename="../enron_mail_20150507.tgz")
 print "download complete!"
 
-
 print
 print "unzipping Enron dataset (this may take a while)"
 import tarfile
